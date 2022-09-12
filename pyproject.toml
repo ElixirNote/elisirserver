@@ -1,0 +1,175 @@
+[build-system]
+requires = ["hatchling >=1.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter_server"
+version = "2.1.0.dev0"
+readme = "README.md"
+license = { file = "COPYING.md" }
+description = "The backend—i.e. core services, APIs, and REST endpoints—to Jupyter web applications."
+authors = [{name = "Jupyter Development Team", email = "jupyter@googlegroups.com"}]
+keywords = ["ipython", "jupyter"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Jupyter",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "anyio>=3.1.0,<4",
+    "argon2-cffi",
+    "jinja2",
+    "jupyter_client>=6.1.12",
+    "jupyter_core>=4.7.0",
+    "jupyter_server_terminals",
+    "nbconvert>=6.4.4",
+    "nbformat>=5.2.0",
+    "packaging",
+    "prometheus_client",
+    "pywinpty;os_name=='nt'",
+    "pyzmq>=17",
+    "Send2Trash",
+    "terminado>=0.8.3",
+    "tornado>=6.1.0",
+    "traitlets>=5.1",
+    "websocket-client",
+    "jupyter_events>=0.4.0"
+]
+
+[project.urls]
+Homepage = "https://jupyter-server.readthedocs.io"
+Documentation = "https://jupyter-server.readthedocs.io"
+Funding = "https://numfocus.org/donate"
+Source = "https://github.com/jupyter-server/jupyter_server"
+Tracker = "https://github.com/jupyter-server/jupyter_server/issues"
+
+[project.optional-dependencies]
+test = [
+    "ipykernel",
+    "pytest-console-scripts",
+    "pytest-timeout",
+    "pytest-tornasync",
+    "pytest>=6.0",
+    "requests",
+]
+dev = [
+  "coverage",
+  "pre-commit",
+  "pytest-cov",
+]
+
+[project.scripts]
+jupyter-server = "jupyter_server.serverapp:main"
+
+[tool.hatch.build]
+artifacts = ["jupyter_server/static/style"]
+
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder>=0.3.3"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = [
+  "jupyter_server/static/style/bootstrap.min.css",
+  "jupyter_server/static/style/bootstrap-theme.min.css"
+]
+install-pre-commit-hook = true
+
+[tool.black]
+line_length = 100
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = "-raXs --durations 10 --color=yes --doctest-modules"
+testpaths = [
+    "tests/"
+]
+timeout = 300
+# Restore this setting to debug failures
+# timeout_method = "thread"
+filterwarnings = [
+  "error",
+  "module:make_current is deprecated:DeprecationWarning",
+  "module:clear_current is deprecated:DeprecationWarning",
+  "module:There is no current event loop:DeprecationWarning",
+  "ignore:Passing a schema to Validator.iter_errors:DeprecationWarning",
+  "ignore:unclosed <socket.socket:ResourceWarning",
+  "ignore:unclosed event loop:ResourceWarning",
+  "ignore:run_pre_save_hook is deprecated:DeprecationWarning"
+]
+
+[tool.jupyter-releaser]
+skip = ["check-links"]
+
+[tool.jupyter-releaser.hooks]
+before-build-python = ["npm install", "npm run build"]
+
+[tool.jupyter-releaser.options]
+post-version-spec = "dev"
+pydist_resource_paths = ["jupyter_server/static/style/bootstrap.min.css", "jupyter_server/static/style/bootstrap-theme.min.css"]
+
+[tool.tbump.version]
+current = "2.1.0.dev0"
+regex = '''
+  (?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)
+  ((?P<channel>a|b|rc|.dev)(?P<release>\d+))?
+'''
+
+[tool.tbump.git]
+message_template = "Bump to {new_version}"
+tag_template = "v{new_version}"
+
+[[tool.tbump.file]]
+src = "jupyter_server/_version.py"
+version_template = '({major}, {minor}, {patch}, "{channel}", "{release}")'
+
+[[tool.tbump.file]]
+src = "pyproject.toml"
+version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\""
+
+[[tool.tbump.file]]
+src = "docs/source/conf.py"
+version_template = "{major}.{minor}.{patch}{channel}{release}"
+
+[[tool.tbump.field]]
+name = "channel"
+default = ""
+
+[[tool.tbump.field]]
+name = "release"
+default = ""
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+pretty = true
+show_error_context = true
+show_error_codes = true
+strict_equality = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+explicit_package_bases = true
+namespace_packages = true
+
+
+[[tool.mypy.overrides]]
+module = [
+    "pysqlite2",
+    "_frozen_importlib_external",
+    "send2trash",
+    "websocket"
+]
+ignore_missing_imports = true

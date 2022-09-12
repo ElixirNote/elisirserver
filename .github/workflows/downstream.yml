@@ -1,0 +1,47 @@
+name: Test downstream projects
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Test nbclassic
+        uses: jupyterlab/maintainer-tools/.github/actions/downstream-test@v1
+        with:
+          package_name: nbclassic
+
+      - name: Test jupyterlab_server
+        uses: jupyterlab/maintainer-tools/.github/actions/downstream-test@v1
+        with:
+          package_name: jupyterlab_server
+
+      - name: Test jupyterlab
+        uses: jupyterlab/maintainer-tools/.github/actions/downstream-test@v1
+        with:
+          package_name: jupyterlab
+          test_command: "python -m jupyterlab.browser_check --no-browser-test"
+
+      - name: Test run nbclassic
+        run: |
+          pip install nbclassic
+          pip install --force-reinstall "."
+
+          # Make sure we can start and kill the nbclassic server
+          jupyter nbclassic --no-browser &
+          TASK_PID=$!
+          # Make sure the task is running
+          ps -p $TASK_PID || exit 1
+          sleep 5
+          kill $TASK_PID
+          wait $TASK_PID
