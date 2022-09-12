@@ -12,7 +12,8 @@ For more information, read our [documentation here](http://jupyter-server.readth
 To install the latest release locally, make sure you have
 [pip installed](https://pip.readthedocs.io/en/stable/installing/) and run:
 
-    git clone git@github.com:jupyter-server/jupyter_server.git
+    git clone git git@github.com:ElixirNote/elixirserver.git
+    cd elixirserver
     pip install -e .
 
 ElixirServer currently supports Python>=3.6 on Linux, OSX and Windows.
