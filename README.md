@@ -24,7 +24,7 @@ If Jupyter Server is a dependency of your project/application, it is important t
 
 When a new minor version is released on PyPI, a branch for that version will be created in this repository, and the version of the main branch will be bumped to the next minor version number. That way, the main branch always reflects the latest un-released version.
 
-To see the changes between releases, checkout the [CHANGELOG](https://github.com/jupyter/jupyter_server/blob/main/CHANGELOG.md).
+To see the changes between releases, checkout the [CHANGELOG](CHANGELOG.md).
 
 ## Usage - Running Jupyter Server
 
@@ -36,7 +36,7 @@ Launch with:
 
 ### Testing
 
-See [CONTRIBUTING](https://github.com/jupyter-server/jupyter_server/blob/main/CONTRIBUTING.rst#running-tests).
+See [CONTRIBUTING](CONTRIBUTING.rst#running-tests).
 
 ## Contributing
 
