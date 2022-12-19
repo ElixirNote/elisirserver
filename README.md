@@ -15,7 +15,7 @@ For more information, read our [documentation here](https://ciusji.gitbook.io/el
 To install the latest release locally, make sure you have
 [pip installed](https://pip.readthedocs.io/en/stable/installing/) and run:
 
-    pip install elixir_server
+    pip install elixir-server
 
 or install from source:
 
