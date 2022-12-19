@@ -32,10 +32,6 @@ body > #header #header-container {
   flex-direction: row;
   justify-content: space-between;
   padding: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-bottom: 5px;
-  padding-top: 5px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -52,9 +48,6 @@ body > #header .header-bar {
   float: left;
   height: 30px;
   padding: 6px 0px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 0px;
   font-size: 17px;
   line-height: 18px;
 }

@@ -1,16 +1,23 @@
-# Elixir Server
+<div align="center">
+    <img src="https://raw.githubusercontent.com/ElixirNote/elixirserver/main/jupyter_server/static/logo/logo.png" width=120 alt="logo" />
+    <br />
+    <small>go from data to knowledge</small>
+</div>
 
-[![Build Status](https://github.com/jupyter/jupyter_server/workflows/CI/badge.svg?query=branch%3Amain++)](https://github.com/jupyter-server/jupyter_server/actions?query=branch%3Amain++)
-[![Documentation Status](https://readthedocs.org/projects/jupyter-server/badge/?version=latest)](http://jupyter-server.readthedocs.io/en/latest/?badge=latest)
+# [Elixir Server](https://ciusji.gitbook.io/elixirnote/guides/elixirnote-server)
 
-The [**ElixirNote**](https://github.com/ElixirNote/elixirnote) Server provides the backend (i.e. the core services, APIs, and REST endpoints) for Jupyter web applications like Jupyter notebook, JupyterLab, and Voila.
+The [**ElixirNote**](https://github.com/ElixirNote/elixirnote) Server provides the backend (i.e. the core services, APIs, and REST endpoints) for Elixir web applications like Elixir notebook, and Voila.
 
-For more information, read our [documentation here](http://jupyter-server.readthedocs.io/en/latest/?badge=latest).
+For more information, read our [documentation here](https://ciusji.gitbook.io/elixirnote/guides/elixirnote-server).
 
 ## Installation and Basic usage
 
 To install the latest release locally, make sure you have
 [pip installed](https://pip.readthedocs.io/en/stable/installing/) and run:
+
+    pip install elixir_server
+
+or install from source:
 
     git clone git git@github.com:ElixirNote/elixirserver.git
     cd elixirserver
@@ -20,32 +27,28 @@ ElixirServer currently supports Python>=3.6 on Linux, OSX and Windows.
 
 ### Versioning and Branches
 
-If Jupyter Server is a dependency of your project/application, it is important that you pin it to a version that works for your application. Currently, Jupyter Server only has minor and patch versions. Different minor versions likely include API-changes while patch versions do not change API.
+If Elixir Server is a dependency of your project/application, it is important that you pin it to a version that works for your application. Currently, Jupyter Server only has minor and patch versions. Different minor versions likely include API-changes while patch versions do not change API.
 
 When a new minor version is released on PyPI, a branch for that version will be created in this repository, and the version of the main branch will be bumped to the next minor version number. That way, the main branch always reflects the latest un-released version.
 
 To see the changes between releases, checkout the [CHANGELOG](CHANGELOG.md).
 
-## Usage - Running Jupyter Server
+## Usage - Running Elixir Server
 
 ### Running in a local installation
 
 Launch with:
 
-    jupyter server
+    elixir-server
 
 ### Testing
 
-See [CONTRIBUTING](CONTRIBUTING.rst#running-tests).
+See [CONTRIBUTING](CONTRIBUTING.rst).
 
 ## Contributing
 
 If you are interested in contributing to the project, see [`CONTRIBUTING.rst`](CONTRIBUTING.rst).
 
-## Team Meetings and Roadmap
+## License
 
-- When: Thursdays [8:00am, Pacific time](https://www.thetimezoneconverter.com/?t=8%3A00%20am&tz=San%20Francisco&)
-- Where: [Jovyan Zoom](https://zoom.us/my/jovyan?pwd=c0JZTHlNdS9Sek9vdzR3aTJ4SzFTQT09)
-- What: [Meeting notes](https://github.com/jupyter-server/team-compass/issues/4)
-
-See our tentative [roadmap here](https://github.com/jupyter/jupyter_server/issues/127).
+[ Licensing terms](./COPYING.md).

@@ -224,9 +224,7 @@ class ExtensionApp(JupyterApp):
     @default("log_format")
     def _default_log_format(self):
         """override default log format to include date & time"""
-        return (
-            "%(color)s[%(levelname)1.1s %(asctime)s.%(msecs).03d %(name)s]%(end_color)s %(message)s"
-        )
+        return "%(color)s[%(levelname)1.1s %(asctime)s.%(msecs).03d %(name)s]%(end_color)s %(lineno)s %(message)s"
 
     static_url_prefix = Unicode(
         help="""Url where the static assets for the extension are served."""

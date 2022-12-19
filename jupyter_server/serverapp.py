@@ -744,10 +744,10 @@ aliases.update(
 
 class ServerApp(JupyterApp):
 
-    name = "jupyter-server"
+    name = "elixir-server"
     version = __version__
     description = _i18n(
-        """The Jupyter Server.
+        """The Elixir Server.
 
     This launches a Tornado-based Jupyter Server."""
     )
@@ -1053,7 +1053,7 @@ class ServerApp(JupyterApp):
     @default("token")
     def _deprecated_token_access(self):
         warnings.warn(
-            "ServerApp.token config is deprecated in jupyter-server 2.0. Use IdentityProvider.token",
+            "ServerApp.token config is deprecated in elixir-server 2.0. Use IdentityProvider.token",
             DeprecationWarning,
             stacklevel=3,
         )
@@ -2565,7 +2565,7 @@ class ServerApp(JupyterApp):
             info += "\n"
         # Format the info so that the URL fits on a single line in 80 char display
         info += _i18n(
-            "Jupyter Server {version} is running at:\n{url}".format(
+            "Elixir Server {version} is running at:\n{url}".format(
                 version=ServerApp.version, url=self.display_url
             )
         )
@@ -2773,10 +2773,10 @@ class ServerApp(JupyterApp):
         if "dev" in __version__:
             info(
                 _i18n(
-                    "Welcome to Project Jupyter! Explore the various tools available"
+                    "Welcome to Project Elixir! Explore the various tools available"
                     " and their corresponding documentation. If you are interested"
                     " in contributing to the platform, please visit the community"
-                    " resources section at https://jupyter.org/community.html."
+                    " resources section at https://ciusji.gitbook.io/elixirnote/."
                 )
             )
 
@@ -2795,7 +2795,7 @@ class ServerApp(JupyterApp):
                     "\n".join(
                         [
                             "\n",
-                            "Jupyter Server is listening on %s" % self.display_url,
+                            "Elixir Server is listening on %s" % self.display_url,
                             "",
                             (
                                 "UNIX sockets are not browser-connectable, but you can tunnel to "
